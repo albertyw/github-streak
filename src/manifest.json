@@ -5,6 +5,13 @@
   "description": "Show github streaks again",
   "version": "1.0",
 
+  "content_scripts": [
+      {
+          "matches": ["https://github.com/*"],
+          "css": [],
+          "js": ["jquery-2.2.4.min.js", "script.js"]
+      }
+  ],
   "permissions": [
     "https://github.com/"
   ]
