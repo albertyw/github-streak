@@ -1,0 +1,11 @@
+{
+  "manifest_version": 2,
+
+  "name": "Github Streaks",
+  "description": "Show github streaks again",
+  "version": "1.0",
+
+  "permissions": [
+    "https://github.com/"
+  ]
+}
