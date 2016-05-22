@@ -20,7 +20,7 @@ var html = '<div class="contrib-column contrib-column-first table-column">' +
 '</div>';
 
 var data = {
-    'YEAR_OF_CONTRIBUTIONS': 3092,
+    'YEAR_OF_CONTRIBUTIONS': undefined,
     'YEAR_OF_CONTRIBUTIONS_START': undefined,
     'YEAR_OF_CONTRIBUTIONS_END': undefined,
     'LONGEST_STREAK':  undefined,
@@ -30,6 +30,15 @@ var data = {
     'CURRENT_STREAK_START': undefined,
     'CURRENT_STREAK_END': undefined,
 };
+
+$("#contributions-calendar").prev().contents().each(function(){
+    if(this.nodeType !== 3 || this.wholeText.indexOf('contributions in') === -1){
+        return;
+    }
+    var contributions = $.trim(this.wholeText);
+    contributions = contributions.substring(0, contributions.indexOf(' '));
+    data.YEAR_OF_CONTRIBUTIONS = contributions;
+});
 
 // TODO: data needs to be updated
 var today = moment();
