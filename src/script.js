@@ -21,18 +21,37 @@ var html = '<div class="contrib-column contrib-column-first table-column">' +
 
 var data = {
     'YEAR_OF_CONTRIBUTIONS': 3092,
-    'YEAR_OF_CONTRIBUTIONS_START': 'May 21, 2015',
-    'YEAR_OF_CONTRIBUTIONS_END': 'May 21, 2016',
-    'LONGEST_STREAK':  1195,
-    'LONGEST_STREAK_START': 'February 12, 2013',
-    'LONGEST_STREAK_END': 'May 21, 2016',
-    'CURRENT_STREAK': '1195',
-    'CURRENT_STREAK_START': 'February 12, 2013',
-    'CURRENT_STREAK_END': 'May 21, 2016',
+    'YEAR_OF_CONTRIBUTIONS_START': undefined,
+    'YEAR_OF_CONTRIBUTIONS_END': undefined,
+    'LONGEST_STREAK':  undefined,
+    'LONGEST_STREAK_START': undefined,
+    'LONGEST_STREAK_END': undefined,
+    'CURRENT_STREAK': undefined,
+    'CURRENT_STREAK_START': undefined,
+    'CURRENT_STREAK_END': undefined,
 };
 
+// TODO: data needs to be updated
+var today = moment();
+data.YEAR_OF_CONTRIBUTIONS_START = moment().subtract(1, 'year');
+data.YEAR_OF_CONTRIBUTIONS_END = today;
+data.LONGEST_STREAK_START = moment('2013-02-12');
+data.LONGEST_STREAK_END = today;
+data.LONGEST_STREAK = data.LONGEST_STREAK_END.diff(data.LONGEST_STREAK_START, 'days');
+data.CURRENT_STREAK_START = moment('2013-02-12');
+data.CURRENT_STREAK_END = today;
+data.CURRENT_STREAK = data.CURRENT_STREAK_END.diff(data.CURRENT_STREAK_START, 'days');
+
+function formatDate(date) {
+    return date.format('MMMM D, YYYY');
+}
+
 Object.keys(data).forEach(function (key) {
-    html = html.replace(key, data[key]);
+    var replacement = data[key];
+    if (typeof replacement === 'object' && typeof replacement.format === 'function') {
+        replacement = formatDate(replacement);
+    }
+    html = html.replace(key, replacement);
 });
 
 $("#contributions-calendar").append(html);
