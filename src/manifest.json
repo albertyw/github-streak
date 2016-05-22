@@ -9,7 +9,7 @@
       {
           "matches": ["https://github.com/*"],
           "css": [],
-          "js": ["jquery-2.2.4.min.js", "script.js"]
+          "js": ["jquery-2.2.4.min.js", "moment.min.js", "script.js"]
       }
   ],
   "permissions": [
