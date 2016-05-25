@@ -5,6 +5,13 @@
   "description": "Show github streaks again",
   "version": "0.1",
 
+  "icons": {
+      "16": "images/github-streak16.png",
+      "32": "images/github-streak32.png",
+      "48": "images/github-streak48.png",
+      "128": "images/github-streak128.png"
+  },
+
   "content_scripts": [
       {
           "matches": ["https://github.com/*"],
